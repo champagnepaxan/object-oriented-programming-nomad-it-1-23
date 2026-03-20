@@ -1,23 +1,25 @@
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.Comparator;
 
 public class Main {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
+        // --- CustomArrayList demo ---
         CustomArrayList arrayList = new CustomArrayList();
-        arrayList.add(1);
-        arrayList.add(2);
-        arrayList.add(3);
-        arrayList.add(4);
         arrayList.add(5);
-        arrayList.add(4,10);
-        arrayList.add(0);
+        arrayList.add(2);
+        arrayList.add(8);
+        arrayList.add(1);
 
-        //Implement custom sort
-        //Implement custom insert at specific index V
 
-        System.out.println(arrayList.toString());
+        System.out.println("Before sort:      " + arrayList);
 
+        // Natural order (ascending) — like Comparable, rule is fixed inside sort()
+        arrayList.sort();
+        System.out.println("After sort():     " + arrayList);
+
+        // Descending — custom rule passed as Comparator
+        arrayList.sort(Comparator.comparingInt(a -> a));
+        System.out.println("After sort(desc): " + arrayList);
 
 
     }

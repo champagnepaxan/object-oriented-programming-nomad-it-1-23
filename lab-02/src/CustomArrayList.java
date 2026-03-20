@@ -1,53 +1,74 @@
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
-public class CustomArrayList implements Comparable<CustomArrayList> {
+public class CustomArrayList {
+
     private int[] arr;
+
     private int index;
     private int size;
 
     public CustomArrayList() {
-        arr = new int[10];
-        index = 0;
         size = 4;
+        arr = new int[size];
+        index = 0;
+
     }
-    public void add(Integer value){
-        if(index >= arr.length){
+
+    public void add(Integer value) {
+        if (index >= size - 1) {
             arr = getNewArray();
         }
-
         arr[index] = value;
         index++;
-
     }
 
     public void add(int index, int value) {
-        if (this.index <= index || index < 0){
+        if (this.index <= index || index < 0) {
             throw new IndexOutOfBoundsException("Index out of bounds: " + index);
         }
 
         arr[index] = value;
+
     }
 
     @Override
-    public String toString(){
-        return Arrays.toString(Arrays.stream(arr).takeWhile( x -> x!= 0).toArray());
+    public String toString() {
+        return Arrays.toString(Arrays.stream(arr).takeWhile(x -> x != 0).toArray());
     }
 
-    public Integer get(int index){
+    public Integer get(int index) {
         return arr[index];
     }
 
-    private int[] getNewArray(){
+    private int[] getNewArray() {
         int[] newArr = new int[size * 2];
-        for(int i = 0; i<arr.length; i++){
+        for (int i = 0; i < arr.length; i++) {
             newArr[i] = arr[i];
-
         }
-       return  newArr;
+        return newArr;
     }
 
-    @Override
-    public int compareTo(CustomArrayList o) {
-        return o.get(index).compareTo(index);
+    // Natural order sort (ascending) — analogous to Comparable.
+    // No Comparator needed; the rule is baked in: smaller number comes first.
+    public void sort() {
+        sort((a, b) -> Integer.compare(a, b));
     }
+
+    // Comparator-based sort — caller decides the ordering rule.
+    // Bubble sort: swaps adjacent elements when comparator says they are out of order.
+    public void sort(Comparator<Integer> comparator) {
+        for (int i = 0; i < index - 1; i++) {
+            for (int j = 0; j < index - i - 1; j++) {
+                // comparator.compare returns > 0 when left should come AFTER right
+                if (comparator.compare(arr[j], arr[j + 1]) > 0) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }
+
 }
