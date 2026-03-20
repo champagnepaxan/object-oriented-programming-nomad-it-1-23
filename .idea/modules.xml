@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Project-01/Project-01.iml" filepath="$PROJECT_DIR$/Project-01/Project-01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lab-02/lab-02.iml" filepath="$PROJECT_DIR$/lab-02/lab-02.iml" />
       <module fileurl="file://$PROJECT_DIR$/object-oriented-programming-nomad-it-1-23.iml" filepath="$PROJECT_DIR$/object-oriented-programming-nomad-it-1-23.iml" />
     </modules>
   </component>
